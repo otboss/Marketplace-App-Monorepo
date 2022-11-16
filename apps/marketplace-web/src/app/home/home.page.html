@@ -1,0 +1,41 @@
+<ion-header class="home--header">
+  
+  <div class="home--header-logo-container" [routerLink]="homeRoute">
+    <div class="home--header-logo">
+      <img src="assets/logo.svg">
+    </div>
+    <span>Marketplace</span>
+  </div>
+  <div class="home--header-searchbar">
+    <div class="home--header-searchbar-container">
+      <ion-select interface="popover" placeholder="Select Category" value="All Categories">
+        <div *ngFor="let category of categories">
+          <ion-select-option [value]="category">{{ category }}</ion-select-option>
+        </div>
+      </ion-select>
+      <input>
+      <button>
+        <ion-icon name="search-circle-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+  <div class="home--header-actions-container">
+    <ion-icon name="list-circle-outline" title="Orders"></ion-icon>
+    <ion-icon id="home--header-actions-account" class="home--header-actions-account" name="person-circle-outline" title="Account"></ion-icon>
+    <ion-popover class="home--header-actions-account-popover" trigger="home--header-actions-account" triggerAction="click">
+      <ng-template>
+        <ion-content class="ion-padding">
+          <span>You are not currently signed in</span>
+          <ion-button expand="block" (click)="accountPopoverSignInButtonClicked()">Sign In</ion-button>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+
+    <ion-icon name="cart-outline" class="home--header-actions-container-filled-icon" title="Cart" [routerLink]="cartRoute"></ion-icon>
+  </div>
+
+</ion-header>
+
+<ion-content> 
+  <ion-router-outlet id="main" [animated]="true"></ion-router-outlet>
+</ion-content> 

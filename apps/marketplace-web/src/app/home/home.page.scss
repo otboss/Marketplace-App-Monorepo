@@ -1,0 +1,120 @@
+.home--header{
+  height: 80px;
+  width: 100%;
+  background-color: var(--ion-color-primary);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  color: white;
+}
+
+.home--header-logo-container{
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+}
+
+.home--header-logo{
+  width: 70px;
+  padding: 10px;
+}
+
+.home--header-searchbar{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 0 30px;
+}
+
+.home--header-searchbar-container{
+  background-color: white;
+  display: flex;
+  width: 100%;
+}
+
+.home--header-searchbar-container ion-select{
+  width: 40%;
+  max-width: 200px;
+  color: black;
+}
+
+.home--header-searchbar input{
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: none;
+  color: rgb(59, 59, 59);
+}
+
+.home--header-searchbar button{
+  font-size: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ion-color-secondary);
+  color: rgb(65, 65, 65);
+  width: 100px;
+  cursor: pointer;
+  
+}
+
+.home--header-actions-container{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.home--header-actions-container ion-icon {
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.home--header-actions-account-popover{
+
+}
+
+.home--header-actions-account-popover ion-button{
+  --background: var(--ion-color-secondary);
+  --color: black;
+}
+
+.home--header-actions-container-filled-icon  {
+  color: var(--ion-color-secondary);
+}
+
+.body{
+  background-color: red;
+  width: 100%;
+  height: 40px;
+}
+
+
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}

@@ -1,0 +1,60 @@
+version: '2.4'
+
+services:
+  database:
+    image: postgres:12.3
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    networks:
+      - marketplace-backend
+    volumes:
+      - marketplace-db-data:/var/lib/postgresql/data
+
+  pgadmin4:
+    image: dpage/pgadmin4:4.25
+    ports:
+      - 8000:80
+    networks:
+      - marketplace-backend
+    depends_on:
+      - database
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+  backend:
+    build:
+      context: ./apps/marketplace-api
+      target: dev
+      dockerfile: Dockerfile
+    command: dotnet watch --no-hot-reload
+    ports:
+      - 7059:7059
+      - 5210:5210
+    volumes:
+      - type: bind
+        source: ./apps/marketplace-api
+        target: /app
+        
+  frontend:
+    build:
+      context: ./apps/marketplace-web
+      dockerfile: Dockerfile
+      target: dev
+    command: ionic serve --host 0.0.0.0
+    depends_on:
+      - backend
+    volumes:
+      - type: bind
+        source: ./apps/marketplace-web
+        target: /app
+    ports:
+      - 8100:8100
+networks:
+  marketplace-backend:
+
+volumes:
+  marketplace-db-data:

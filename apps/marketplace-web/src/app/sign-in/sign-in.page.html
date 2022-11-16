@@ -1,0 +1,43 @@
+<ion-content class="sign-in">
+  <div class="sign-in--form-container">
+    <div class="sign-in--form">
+        <div class="sign-in--form-logo-container">
+          <img src="assets/logo.svg">
+        </div>
+        <div class="sign-in--form-label">
+          <div>
+            Sign <span *ngIf="!isSignUp">In</span> <span *ngIf="isSignUp">Up</span>
+          </div>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input autofocus="true" [value]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input [value]="password"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="isSignUp">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input [value]="confirmationPassword"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="handleSubmit()">
+          <span *ngIf="!isSignUp">Sign In</span>
+          <span *ngIf="isSignUp">Sign Up</span>
+        </ion-button>
+        <div class="sign-in--form-alternatives">
+          <div>
+            <span *ngIf="!isSignUp">Not yet</span><span *ngIf="isSignUp">Already</span><span> a member? </span>
+            <span class="sign-in--form-sign-in-text" *ngIf="!isSignUp" (click)="isSignUp = true">sign up</span>
+            <span class="sign-in--form-sign-in-text" *ngIf="isSignUp" (click)="isSignUp = false">sign in</span>
+          </div>
+          <div>
+            <span class="sign-in--form-forgot-password-text">forgot password</span>
+          </div>
+          <div class="sign-in--form-continue-as-guest">
+            <span [routerLink]="homeRoute">Continue as Guest </span> <ion-icon name="arrow-forward-outline"></ion-icon>
+          </div>
+        </div>
+    </div>
+  </div>
+</ion-content>
