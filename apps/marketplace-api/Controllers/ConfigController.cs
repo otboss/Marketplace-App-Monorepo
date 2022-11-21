@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace marketplace_api.Controllers;
 
@@ -17,21 +18,22 @@ public class ConfigController : ControllerBase
 
     private readonly ILogger<ConfigController> _logger;
 
-    public ConfigController(ILogger<ConfigController> logger)
+    public ConfigController(IActionDescriptorCollectionProvider provider, ILogger<ConfigController> logger)
     {
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetConfig")]
-    public IEnumerable<string> Get()
-    {
-        // return Enumerable.Range(1, 5).Select(index => new Categories
-        // {
-        //     Date = DateTime.Now.AddDays(index),
-        //     TemperatureC = Random.Shared.Next(-20, 55),
-        //     Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        // })
-        // .ToArray();
-        return Categories;
-    }
+    // [HttpGet(Name = "GetRoutes")]
+    // public IEnumerable<string> GetRoutes()
+    // {
+    //     return RouteData.Routers.OfType<RouteCollection>().All();
+    // }
+    private readonly IActionDescriptorCollectionProvider _provider;
+
+    [HttpGet("routes")]
+    public IActionResult GetRoutes() {
+        // TODO: Correct this ROUTE
+        var routes = _provider.ActionDescriptors.Items .Where(ad => ad.AttributeRouteInfo != null) .Select(x => new { Action = null != x && null != x.RouteValues && null != x.RouteValues["action"] ? x.RouteValues["action"] : "n/a", Controller = null != x && null != x.RouteValues && null != x.RouteValues["controller"] ? x.RouteValues["controller"] : "n/a", Name = x.AttributeRouteInfo.Name ?? "n/a", Template = x.AttributeRouteInfo.Template ?? "n/a" }).ToList();
+        return Ok(routes);
+    }    
 }

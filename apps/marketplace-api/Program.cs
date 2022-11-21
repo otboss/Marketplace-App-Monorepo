@@ -8,7 +8,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(setup => {
     setup.AddDefaultPolicy(policyBuilder => {
-        policyBuilder.WithOrigins("https://localhost:3000");
+        // policyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        policyBuilder.WithOrigins("http://localhost:3000");
     });
 });
 

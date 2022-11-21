@@ -21,7 +21,7 @@
           <ion-label position="floating">Confirm Password</ion-label>
           <ion-input [value]="confirmationPassword"></ion-input>
         </ion-item>
-        <ion-button expand="block" (click)="handleSubmit()">
+        <ion-button expand="block" (click)="handleSignIn()">
           <span *ngIf="!isSignUp">Sign In</span>
           <span *ngIf="isSignUp">Sign Up</span>
         </ion-button>

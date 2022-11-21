@@ -21,7 +21,6 @@
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/obj/Debug/net6.0/scopedcss/bundle/marketplace-api.styles.css
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/obj/Debug/net6.0/marketplace-api.csproj.CopyComplete
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/obj/Debug/net6.0/marketplace-api.dll
-/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/obj/Debug/net6.0/refint/marketplace-api.dll
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/obj/Debug/net6.0/marketplace-api.pdb
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/obj/Debug/net6.0/marketplace-api.genruntimeconfig.cache
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/obj/Debug/net6.0/ref/marketplace-api.dll
@@ -66,3 +65,18 @@
 /app/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
 /app/bin/Debug/net6.0/Npgsql.dll
 /app/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/ref/marketplace-api.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.Caching.Abstractions.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.Logging.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Npgsql.dll
+/home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll

@@ -36,6 +36,8 @@ services:
     ports:
       - 7059:7059
       - 8080:8080
+    depends_on:
+      - database      
     networks:
       - marketplace-backend      
     volumes:
@@ -48,9 +50,7 @@ services:
       context: ./apps/marketplace-web
       dockerfile: Dockerfile
       target: dev
-    command: ionic serve --host 0.0.0.0
-    depends_on:
-      - backend
+    command: npm start
     networks:
       - marketplace-backend      
     volumes:
@@ -58,7 +58,8 @@ services:
         source: ./apps/marketplace-web
         target: /app
     ports:
-      - 3000:8100
+      - 3000:3000 
+      
 networks:
   marketplace-backend:
 

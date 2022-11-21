@@ -32,16 +32,17 @@ public class SessionController : ControllerBase
         return false;
     }
 
-    [HttpGet("signIn")]
+    [HttpPost("signIn")]
     public HttpResponseMessage SignIn(string email, string password){
         HttpResponseMessage response = new HttpResponseMessage();
         // response.AppendHeader("Access-Control-Allow-Origin", "*");
         // response.Headers.Append("Access-Control-Allow-Origin", "*");
-    // Response.Headers.Add("Access-Control-Allow-Origin", "*");
+        Response.Headers.Add("Access-Control-Allow-Origin", "*");
+        // HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");        
         return response;
     }
 
-    [HttpPost("createAccount")]
+    [HttpPost("signUp")]
     public HttpResponseMessage CreateAccount(string email, string password){
         HttpResponseMessage response = new HttpResponseMessage();
         return response;
@@ -49,6 +50,12 @@ public class SessionController : ControllerBase
 
     [HttpPost("signOut")]
     public HttpResponseMessage SignOut(string token){
+        HttpResponseMessage response = new HttpResponseMessage();
+        return response;
+    }
+
+    [HttpPost("forgotPassword")]
+    public HttpResponseMessage ForgotPassword(string token){
         HttpResponseMessage response = new HttpResponseMessage();
         return response;
     }

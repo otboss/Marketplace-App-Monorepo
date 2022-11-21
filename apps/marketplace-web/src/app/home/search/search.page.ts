@@ -38,9 +38,7 @@ export class SearchPage implements OnInit {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe()
-    })
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 
 }

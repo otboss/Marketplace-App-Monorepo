@@ -2,8 +2,22 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import ProductCategories from "src/model/ProductCategories";
+
 export const environment = {
-  production: false
+  production: false,
+  backend: {
+    backendOrigin: window.location.origin,
+    endpoints: {
+      productSearch: (query: string, category: ProductCategories = ProductCategories.ALL_CATEGORIES, page: number = 1): string => {
+        return `/api/Product/search?query=${query}&category=${category}&category=${category}&page=${page}`
+      },
+      signIn: `/api/Session/signIn`,
+      signUp: `/api/Session/signUp`,
+      signOut: `/api/Session/signOut`,
+      forgotPassword: `/api/Session/forgotPassword`,
+    }
+  }
 };
 
 /*

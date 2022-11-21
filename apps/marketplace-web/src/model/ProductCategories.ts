@@ -1,11 +1,11 @@
 enum ProductCategories {
-    ALL_CATEGORIES="All Categories",
-    APPAREL="Apparel",
-    APPLIANCES="Appliances",
-    BABY="Baby",
-    BEAUTY="Beauty",
-    COMPUTERS="Computers",
-    ELECTRONICS="Electronics",    
+    ALL_CATEGORIES="ALL_CATEGORIES",
+    APPAREL="APPAREL",
+    APPLIANCES="APPLIANCES",
+    BABY="BABY",
+    BEAUTY="BEAUTY",
+    COMPUTERS="COMPUTERS",
+    ELECTRONICS="ELECTRONICS",
 }
 
 export default ProductCategories

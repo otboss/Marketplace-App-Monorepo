@@ -13,6 +13,7 @@ public class ProductController : ControllerBase
 
     [HttpGet("search")]
     public IEnumerable<Product> SearchProducts([FromQuery(Name = "query")] string query, [FromQuery(Name = "category")] string? category){
+        Console. Write("new REQUEST");
         return Enumerable.Range(1, 5).Select(index => new Product
         {
             // Date = DateTime.Now.AddDays(index),

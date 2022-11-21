@@ -18,12 +18,10 @@ export class HomePage {
   signInRoute: string = RouteMapper.signIn
   cartRoute: string = RouteMapper.cart
 
-  // TODO: Get Categories from the server and populate this list
-  // public categories: ReadonlyArray<string> = ItemCategories.map(d)
-
+  // TODO: Make product categories title case and remove underlines
   productCategories: ReadonlyArray<string> = Object.values(ProductCategories)
 
-  constructor(private store: Store<typeof appState>, private router: Router, public popoverCtrl: PopoverController) {}
+  constructor(private store: Store<typeof appState>, private router: Router, public popoverCtrl: PopoverController) { }
 
   accountPopoverSignInButtonClicked(){
     this.router.navigateByUrl(RouteMapper.signIn)
@@ -43,4 +41,5 @@ export class HomePage {
       payload: target.detail.value
     }))
   }
+
 }
