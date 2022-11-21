@@ -24,6 +24,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin
       PGADMIN_DEFAULT_PASSWORD: admin
+    logging:
+        driver: none
 
   backend:
     build:
@@ -33,7 +35,9 @@ services:
     command: dotnet watch --no-hot-reload
     ports:
       - 7059:7059
-      - 5210:5210
+      - 8080:8080
+    networks:
+      - marketplace-backend      
     volumes:
       - type: bind
         source: ./apps/marketplace-api
@@ -47,12 +51,14 @@ services:
     command: ionic serve --host 0.0.0.0
     depends_on:
       - backend
+    networks:
+      - marketplace-backend      
     volumes:
       - type: bind
         source: ./apps/marketplace-web
         target: /app
     ports:
-      - 8100:8100
+      - 3000:8100
 networks:
   marketplace-backend:
 

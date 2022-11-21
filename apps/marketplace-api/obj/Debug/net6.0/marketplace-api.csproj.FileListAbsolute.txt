@@ -52,3 +52,17 @@
 /app/obj/Debug/net6.0/marketplace-api.pdb
 /app/obj/Debug/net6.0/marketplace-api.genruntimeconfig.cache
 /app/obj/Debug/net6.0/ref/marketplace-api.dll
+/app/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll
+/app/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/app/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.Caching.Abstractions.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.Logging.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
+/app/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/app/bin/Debug/net6.0/Npgsql.dll
+/app/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll

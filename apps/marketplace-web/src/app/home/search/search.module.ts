@@ -15,6 +15,6 @@ import { SearchPage } from './search.page';
     IonicModule,
     SearchPageRoutingModule
   ],
-  declarations: [SearchPage]
+  declarations: [SearchPage],
 })
 export class SearchPageModule {}

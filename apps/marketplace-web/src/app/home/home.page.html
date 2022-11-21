@@ -8,12 +8,12 @@
   </div>
   <div class="home--header-searchbar">
     <div class="home--header-searchbar-container">
-      <ion-select interface="popover" placeholder="Select Category" value="All Categories">
-        <div *ngFor="let category of categories">
+      <ion-select interface="popover" placeholder="Select Category" value="All Categories" (ionChange)="updateSearchCategory($event)">
+        <div *ngFor="let category of productCategories">
           <ion-select-option [value]="category">{{ category }}</ion-select-option>
         </div>
       </ion-select>
-      <input>
+      <input (keyup)="updateSearchQuery($event)">
       <button>
         <ion-icon name="search-circle-outline"></ion-icon>
       </button>

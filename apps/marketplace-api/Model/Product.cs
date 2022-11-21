@@ -1,7 +1,7 @@
 namespace marketplace_api.Model;
 
 
-public class Item {
+public class Product {
     public string? ID { get; set; }
     public string? Title { get; set; }
     public int Rating { get; set; }
