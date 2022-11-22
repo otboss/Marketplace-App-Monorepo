@@ -6,16 +6,20 @@ import ProductCategories from "src/model/ProductCategories";
 
 export const environment = {
   production: false,
+  useMockAPI: true,
   backend: {
-    backendOrigin: window.location.origin,
+    backendOrigin: "https://localhost:8080",
     endpoints: {
-      productSearch: (query: string, category: ProductCategories = ProductCategories.ALL_CATEGORIES, page: number = 1): string => {
-        return `/api/Product/search?query=${query}&category=${category}&category=${category}&page=${page}`
+      productSearch: (queryParams?: {query: string, category: ProductCategories, page: number}): string => {
+        if(queryParams != null)
+          return `/api/Product/search?query=${encodeURIComponent(queryParams.query.trim().replace(/ /g, '+'))}&category=${encodeURIComponent(queryParams.category.trim().replace(/ /g, '+'))}&page=${queryParams.page}`
+        else
+          return "/api/Product/search"
       },
-      signIn: `/api/Session/signIn`,
-      signUp: `/api/Session/signUp`,
-      signOut: `/api/Session/signOut`,
-      forgotPassword: `/api/Session/forgotPassword`,
+      signIn: () =>`/api/Session/signIn`,
+      signUp: () =>`/api/Session/signUp`,
+      signOut: () =>`/api/Session/signOut`,
+      forgotPassword: () =>`/api/Session/forgotPassword`,
     }
   }
 };

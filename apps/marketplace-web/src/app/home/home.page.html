@@ -7,17 +7,17 @@
     <span>Marketplace</span>
   </div>
   <div class="home--header-searchbar">
-    <div class="home--header-searchbar-container">
-      <ion-select interface="popover" placeholder="Select Category" value="All Categories" (ionChange)="updateSearchCategory($event)">
+    <form class="home--header-searchbar-container">
+      <ion-select interface="popover" placeholder="Select Category" [value]="searchCategory" (ionChange)="updateSearchCategory($event)">
         <div *ngFor="let category of productCategories">
           <ion-select-option [value]="category">{{ category }}</ion-select-option>
         </div>
       </ion-select>
-      <input (keyup)="updateSearchQuery($event)">
-      <button>
+      <input (keyup)="updateSearchQuery($event)" [value]="searchQuery">
+      <button type="submit" (click)="search()">
         <ion-icon name="search-circle-outline"></ion-icon>
       </button>
-    </div>
+    </form>
   </div>
   <div class="home--header-actions-container">
     <ion-icon name="list-circle-outline" title="Orders"></ion-icon>

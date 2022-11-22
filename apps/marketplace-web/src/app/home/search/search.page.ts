@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { selectProductSearchCategory, selectProductSearchQuery } from 'src/ngrx/product-search-store/product-search-selectors';
+import { selectProductSearchCategory, selectProductSearchQuery, selectProductSearchState } from 'src/ngrx/product-search-store/product-search-selectors';
 import appState from 'src/ngrx/app-state';
 import Payload from 'src/model/Payload';
 import ProductCategories from 'src/model/ProductCategories';
+import AsyncState from 'src/model/AsyncState';
 
 @Component({
   selector: 'app-search',
@@ -17,13 +18,16 @@ export class SearchPage implements OnInit {
 
   searchQuery$: Observable<Payload<string>>
   searchCategory$: Observable<Payload<ProductCategories>>
+  searchState$: Observable<Payload<AsyncState>>
 
   searchQuery: string = ""
   searchCategory: ProductCategories = ProductCategories.ALL_CATEGORIES
+  searchState: AsyncState = "loading"
 
   constructor(private store: Store<typeof appState>) {
     this.searchQuery$ = this.store.select(selectProductSearchQuery)
     this.searchCategory$ = this.store.select(selectProductSearchCategory)
+    this.searchState$ = this.store.select(selectProductSearchState)
   }
 
   ngOnInit() {
@@ -33,6 +37,9 @@ export class SearchPage implements OnInit {
       }),
       this.searchCategory$.subscribe(val => {
         this.searchCategory = val.payload
+      }),
+      this.searchState$.subscribe(val => {
+        this.searchState = val.payload
       })
     ]
   }

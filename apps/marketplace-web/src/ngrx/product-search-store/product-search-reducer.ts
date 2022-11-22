@@ -1,4 +1,4 @@
-import { setProductSearchQuery, setProductSearchCategory } from "./product-search-actions";
+import { setProductSearchQuery, setProductSearchCategory, setProductSearchState } from "./product-search-actions";
 import { createReducer, on } from "@ngrx/store";
 import appState from "../app-state"
 import ProductSearch from "src/model/ProductSearch";
@@ -16,5 +16,11 @@ export const productSearchReducer = createReducer(
     on(setProductSearchCategory, (state: typeof defaultState, action) => ({
         ...state,
         category: action.payload
-    }))
+    })),
+
+    on(setProductSearchState, (state: typeof defaultState, action) => ({
+        ...state,
+        state: action.payload
+    })),
+
 )

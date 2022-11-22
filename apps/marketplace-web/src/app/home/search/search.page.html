@@ -7,7 +7,11 @@
 <ion-content>
   <!-- {{searchQuery}}
   {{searchCategory}} -->
-    <div class="search--spinner-container">
+    <div class="search--spinner-container" *ngIf="searchState === 'loading'">
       <ion-spinner class="search--spinner" name="circles"></ion-spinner>
+    </div>
+
+    <div>
+
     </div>
 </ion-content>
