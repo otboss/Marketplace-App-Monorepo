@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Observable } from "rxjs"
 import { environment } from "src/environments/environment"
+import productSearchImagesResponse from "src/model/mock-api-responses/product-search-images-response";
 import productSearchResponse from "../model/mock-api-responses/product-search-response";
 import signInResponse from "../model/mock-api-responses/sign-in-response";
 
@@ -14,9 +15,16 @@ const fetchApi = <T>(
         headers: HttpHeaders | {
             [header: string]: string | string[];
         },
+        isUsingMock: boolean,
         mockApiResponseTime: number
     }>
 ): Observable<T> => {
+    console.log(endpoint)
+    
+    if(options){
+        options.isUsingMock = options.isUsingMock ?? environment.useMockAPI
+    }
+
     const mockApiResponseTime: number = options?.mockApiResponseTime != null ? options?.mockApiResponseTime : 1000
 
     if(environment.useMockAPI === true){
@@ -24,6 +32,8 @@ const fetchApi = <T>(
         function throwBadEndpointPath(p: keyof typeof environment.backend.endpoints) {
             throw new Error('Endpoint handling was not implemented for mock');
         }
+
+        console.log(endpoint)
         const observable = new Observable((observer) => {
             switch(endpoint){
                 case "signIn":
@@ -40,6 +50,9 @@ const fetchApi = <T>(
                     break
                 case "forgotPassword":
                     setTimeout(() => observer.next(), mockApiResponseTime) 
+                    break
+                case "productGetImages":
+                    setTimeout(() => observer.next(productSearchImagesResponse), mockApiResponseTime) 
                     break
                 default:
                     throwBadEndpointPath(endpoint)

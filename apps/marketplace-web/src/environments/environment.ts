@@ -13,9 +13,20 @@ export const environment = {
       productSearch: (queryParams?: {query: string, category: ProductCategories, page: number}): string => {
         if(queryParams != null)
           return `/api/Product/search?query=${encodeURIComponent(queryParams.query.trim().replace(/ /g, '+'))}&category=${encodeURIComponent(queryParams.category.trim().replace(/ /g, '+'))}&page=${queryParams.page}`
-        else
-          return "/api/Product/search"
+        return "/api/Product/search"
+          
       },
+      productGetImages: () => "/api/Product/images",
+      // productGetImages: (queryParams: {productIds: Array<string>}): string => {
+      //   if(queryParams != null)
+      //     return `/api/Product/images?productId=${queryParams.productIds}}`
+      //   throw new Error("parameter not provided")
+      // },
+      // productGetDisplayImages: (queryParams: {productId: string}): string => {
+      //   if(queryParams != null)
+      //     return `/api/Product/images?productId=${queryParams.productId}}`
+      //   throw new Error("parameter not provided")
+      // },
       signIn: () =>`/api/Session/signIn`,
       signUp: () =>`/api/Session/signUp`,
       signOut: () =>`/api/Session/signOut`,

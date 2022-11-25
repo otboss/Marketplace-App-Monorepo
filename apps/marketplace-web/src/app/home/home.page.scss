@@ -71,10 +71,6 @@
   cursor: pointer;
 }
 
-.home--header-actions-account-popover{
-
-}
-
 .home--header-actions-account-popover ion-button{
   --background: var(--ion-color-secondary);
   --color: black;
@@ -82,39 +78,4 @@
 
 .home--header-actions-container-filled-icon  {
   color: var(--ion-color-secondary);
-}
-
-.body{
-  background-color: red;
-  width: 100%;
-  height: 40px;
-}
-
-
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
 }

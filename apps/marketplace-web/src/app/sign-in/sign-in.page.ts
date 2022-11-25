@@ -5,6 +5,9 @@ import { SignInService } from './sign-in.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { CookieFields } from 'src/model/CookieFields';
+import { FormBuilder, FormGroup, ValidationErrors } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import AsyncState from 'src/model/AsyncState';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,20 +16,26 @@ import { CookieFields } from 'src/model/CookieFields';
 })
 export class SignInPage implements OnInit {
 
-
   isSignUp: boolean = false
   email: string = ""
   password: string = ""
   confirmationPassword: string = ""
 
   homeRoute: string = RouteMapper.home
+  isSubmitting: boolean = false
 
-  signInResponse?: {token: string}
+  
 
   private subscriptions: Array<Subscription> = []
+  regForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+  });
 
-  constructor(private signInService: SignInService, private cookieService: CookieService, private router: Router,) { }
+  constructor(private signInService: SignInService, private cookieService: CookieService, private router: Router) { }
 
+
+  
   ngOnInit() {
   }
 
@@ -34,41 +43,55 @@ export class SignInPage implements OnInit {
     this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 
-  private validateSignInCredentials(): Array<{field: string, errorMessage: string}> {
-    // TODO: Research field validation angular
-    // TODO: Research FluentValidation Syntax
-    // TODO: Complete this method
-    return []
+  typeof(val: any){
+    return typeof(val)
   }
 
-  handleSignIn(){
-    const errors = this.validateSignInCredentials()
-    if (errors.length > 0){
-      for(let error of errors){
+  form = {
+    values: {
+      email: "",
+      password: ""
+    },
+    errors: {
+      email: <string | undefined>"",
+      password: <string | undefined>"",
+    },
+  }
 
-      }      
-      return
+  submissionAttempted: boolean = false
+
+  updateErrors(){
+    this.form.errors = this.signInService.signInValidator.validate(this.form.values) as typeof this.form.values
+  }
+
+  async handleSignIn(){
+    this.updateErrors()
+    if(Object.keys(this.form.errors).length === 0){
+      // TODO: Refine this method
+      this.isSubmitting = true
+      try{
+        const response: string = await new Promise((resolve, reject) => {
+          let request = this.signInService.signIn$(this.email, this.password).subscribe(response => {
+            // TODO: 
+            if(response.token === undefined){
+              reject(response)
+              return
+            }
+            
+            request.unsubscribe()
+            resolve(response.token)
+          })
+        })
+
+        this.cookieService.set(CookieFields.authToken, response)
+
+        this.router.navigateByUrl(RouteMapper.home)
+      }
+      catch(err){
+
+      }
+      this.isSubmitting = false
     }
-    let subscription: Subscription
-    new Promise((resolve, reject) => {
-      subscription = this.signInService.signIn$(this.email, this.password).subscribe(response => {
-        // TODO: 
-        if(response.token === undefined){
-          reject(response)
-          return
-        }
-        this.cookieService.set(CookieFields.authToken, response.token)
-        resolve(response)
-      })
-    }).then(() => {
-      this.router.navigateByUrl(RouteMapper.home)
-    }).catch(() => {
-      // TODO: Display appropiate error message
-      
-    }).finally(() =>{
-      subscription.unsubscribe()
-    })
-
   }
 
   handleSignUp(){
