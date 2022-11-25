@@ -18,13 +18,13 @@
     gap: 20px;
 }
 
-.sign-in--form-label{
-    font-size: 24px;
+.sign-in--form-submit-button{
+    visibility: hidden;
+    position: absolute;
 }
 
-
-.sign-in--form ion-item{
-    --padding-start: 0;
+.sign-in--form-label{
+    font-size: 24px;
 }
 
 .sign-in--form-logo-container{
@@ -65,4 +65,9 @@
 .sign-in--form-continue-as-guest ion-icon{
     padding-top: 4px;
     font-size: 18px;
+}
+
+ion-item{
+    // Addresses field color glitch when ngModel is used
+    --ion-color-success: var(--ion-color-primary)
 }

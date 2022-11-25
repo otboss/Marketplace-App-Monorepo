@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SignInPageRoutingModule } from './sign-in-routing.module';
 
 import { SignInPage } from './sign-in.page';
+import { ComponentsModule } from 'src/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SignInPageRoutingModule
+    SignInPageRoutingModule,
+    ComponentsModule,
   ],
   declarations: [SignInPage]
 })

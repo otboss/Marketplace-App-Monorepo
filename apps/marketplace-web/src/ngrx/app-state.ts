@@ -5,7 +5,10 @@ const appState = {
     productSearch: <ProductSearch>{
         query: "",
         category: ProductCategories.ALL_CATEGORIES,
-        page: 1
+        page: 1,
+        state: "success",
+        result: [],
+        resultImages: {}
     }
 }
 

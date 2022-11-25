@@ -1,5 +1,5 @@
-type AuthToken = {
-    token: string
-}
+// type AuthToken = {
+//     token: string
+// }
 
-export default AuthToken
+// export default AuthToken

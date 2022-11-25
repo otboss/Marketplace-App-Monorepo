@@ -1,6 +1,6 @@
 <ion-content class="sign-in">
   <div class="sign-in--form-container">
-    <div class="sign-in--form">
+    <form class="sign-in--form" (ngSubmit)="!isSignUp ? handleSignIn() : handleSignUp(); submissionAttempted = true">
         <div class="sign-in--form-logo-container">
           <img src="assets/logo.svg">
         </div>
@@ -9,22 +9,13 @@
             Sign <span *ngIf="!isSignUp">In</span> <span *ngIf="isSignUp">Up</span>
           </div>
         </div>
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input autofocus="true" [value]="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input [value]="password"></ion-input>
-        </ion-item>
-        <ion-item *ngIf="isSignUp">
-          <ion-label position="floating">Confirm Password</ion-label>
-          <ion-input [value]="confirmationPassword"></ion-input>
-        </ion-item>
-        <ion-button expand="block" (click)="handleSignIn()">
+        <app-input [disabled]="isSubmitting" [errorMessage]="form.errors.email ?? ''" label="Email" (change)="typeof($event) === 'string' && form.values.email = $event; submissionAttempted && updateErrors()"></app-input>
+        <app-input [disabled]="isSubmitting" type="password" [errorMessage]="form.errors.password ?? ''" label="Password" (change)="typeof($event) === 'string' && form.values.password = $event ; submissionAttempted && updateErrors()"></app-input>
+        <ion-button type="submit" expand="block" (click)="!isSignUp ? handleSignIn() : handleSignUp()" [disabled]="isSubmitting">
           <span *ngIf="!isSignUp">Sign In</span>
           <span *ngIf="isSignUp">Sign Up</span>
         </ion-button>
+        <button class="sign-in--form-submit-button" type="submit" [disabled]="isSubmitting"></button>
         <div class="sign-in--form-alternatives">
           <div>
             <span *ngIf="!isSignUp">Not yet</span><span *ngIf="isSignUp">Already</span><span> a member? </span>
@@ -38,6 +29,6 @@
             <span [routerLink]="homeRoute">Continue as Guest </span> <ion-icon name="arrow-forward-outline"></ion-icon>
           </div>
         </div>
-    </div>
+      </form>
   </div>
 </ion-content>
