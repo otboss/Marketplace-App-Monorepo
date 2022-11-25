@@ -11,7 +11,51 @@
       <ion-spinner class="search--spinner" name="circles"></ion-spinner>
     </div>
 
-    <div>
 
+    <div class="search--results-container">
+      <div class="search--side-panel col-3">
+
+      </div>
+      <div class="search--results col-9">
+        <div class="search--results-header">
+          <div class="search--results-label-container">
+            <span>Search Results ({{searchResult.length}})</span>
+          </div>
+          <div class="search--results-toggle-container">
+            <div class="search--results-toggle">
+              <div [ngClass]="{'search--results-toggle-list': true, 'search--results-toggle-on': isResultsListView}" (click)="isResultsListView = true">
+                <ion-icon name="list-outline"></ion-icon>
+              </div>
+              <div [ngClass]="{'search--results-toggle-grid': true, 'search--results-toggle-on': !isResultsListView}" (click)="isResultsListView = false">
+                <ion-icon name="grid-outline"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="search-results-display">
+
+          <div class="search-result-item" *ngFor="let product of searchResult;" (click)="viewProductDetails(product.id)">
+            <div class="search-result-item-image">
+              <img [src]="searchResultImages[product.id] != null ? searchResultImages[product.id][0] : ''">
+            </div>
+            <div class="search-result-item-description">
+              <div class="search-result-item-description-title">
+                <span>{{product.title}}</span>
+              </div>
+              <div class="search-result-item-description-rating">
+                <span>{{product.rating * 5}}/5</span>
+              </div>
+              <div class="search-result-item-description-cost">
+                ${{product.minCost === product.maxCost ? product.minCost : product.minCost + "-" + product.maxCost }}
+              </div>
+            </div>
+          </div>
+
+          <div class="search-result-item-invisible" *ngFor="let x of generateArray(4 - searchResult.length % 4)">
+
+          </div>
+
+        </div>
+      </div>
     </div>
 </ion-content>

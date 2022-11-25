@@ -1,8 +1,12 @@
-type Product = {
-    id: string
-    title: string
-    rating: string
-    cost: string
-}
+// import ProductCategories from "../ProductCategories"
 
-export default Product
+// type Product = Array<{
+//     id: string
+//     title: string
+//     rating: number
+//     minCost: number
+//     maxCost: number
+//     category: ProductCategories
+// }>
+
+// export default Product

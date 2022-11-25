@@ -2,14 +2,20 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { RouteMapper } from 'src/model/RouteMapper';
-import ProductCategories from 'src/model/ProductCategories';
 import { Store } from '@ngrx/store';
-import { setProductSearchCategory, setProductSearchQuery, setProductSearchState } from 'src/ngrx/product-search-store/product-search-actions';
-import appState from 'src/ngrx/app-state';
+import { setProductSearchCategory, setProductSearchQuery, setProductSearchResult, setProductSearchResultImages, setProductSearchState } from 'src/ngrx/product-search-store/product-search-actions';
 import { environment } from 'src/environments/environment';
 import { SearchService } from './search/search.service';
-import { Subscription } from 'rxjs';
-import Product from 'src/model/api-response-types/Product';
+import { Observable, Subscription } from 'rxjs';
+import { selectProductSearchState } from 'src/ngrx/product-search-store/product-search-selectors';
+import { CookieService } from 'ngx-cookie-service';
+import { CookieFields } from 'src/model/CookieFields';
+import ProductCategories from 'src/model/ProductCategories';
+import appState from 'src/ngrx/app-state';
+import productSearchResponse from 'src/model/mock-api-responses/product-search-response';
+import AsyncState from 'src/model/AsyncState';
+import Payload from 'src/model/Payload';
+import jwt_decode from "jwt-decode"
 
 @Component({
   selector: 'app-home',
@@ -18,19 +24,37 @@ import Product from 'src/model/api-response-types/Product';
 })
 export class HomePage {
   
+
+  searchState$: Observable<Payload<AsyncState>>
+  
   homeRoute: string = RouteMapper.home
   signInRoute: string = RouteMapper.signIn
   cartRoute: string = RouteMapper.cart
   searchQuery: string = ""
   searchCategory: ProductCategories = ProductCategories.ALL_CATEGORIES
-  searchResults: Array<Product> = []
   page: number = 1
+  searchState: AsyncState = "success"
+  token: string = this.cookieService.get(CookieFields.authToken)
+
+  subscriptions: Array<Subscription> = []
 
 
   // TODO: Make product categories title case and remove underlines
   productCategories: ReadonlyArray<string> = Object.values(ProductCategories)
 
-  constructor(private store: Store<typeof appState>, private router: Router, public popoverCtrl: PopoverController, private searchService: SearchService) { }
+  constructor(private store: Store<typeof appState>, private router: Router, public popoverCtrl: PopoverController, private searchService: SearchService, private cookieService: CookieService) { 
+    this.searchState$ = this.store.select(selectProductSearchState)
+  }
+
+  ngOnInit(){
+    this.subscriptions = [
+      this.searchState$.subscribe(val => this.searchState = val.payload)
+    ]
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
+  }
 
   accountPopoverSignInButtonClicked(){
     this.router.navigateByUrl(RouteMapper.signIn)
@@ -53,10 +77,13 @@ export class HomePage {
     }))
   }
 
-  search(){
-    if(this.searchQuery.trim().length == 0){
+  async search(){
+    if(this.searchQuery.trim().length == 0 || this.searchState === "loading"){
       return
     }
+    this.store.dispatch(setProductSearchState({
+      payload: 'loading'
+    }))    
     const completeUrl: string = environment.backend.endpoints.productSearch({
       query: this.searchQuery, 
       category: this.searchCategory,
@@ -64,19 +91,32 @@ export class HomePage {
     })
     const queryParameterString: string = completeUrl.slice(completeUrl.indexOf("?")+1)
     this.router.navigateByUrl(`${RouteMapper.search}?${queryParameterString}`)
-    this.store.dispatch(setProductSearchState({
-      payload: 'loading'
-    }))
-    const request = this.searchService.searchProduct$(this.searchQuery, this.searchCategory, this.page).subscribe(val => {
-      this.searchResults = val
-      this.store.dispatch(setProductSearchState({
-        payload: 'success'
-      }))
-      for(let x = 0; x < this.searchResults.length; x++){
-        // TODO: Fetch image for each product
-      }
-      request.unsubscribe()
+    // TODO: Implement error handling
+
+     const searchResults: typeof productSearchResponse = await new Promise((resolve, reject)  => {
+      const request = this.searchService.searchProduct$(this.searchQuery, this.searchCategory, 1, 1).subscribe(async searchResults => {
+        this.store.dispatch(setProductSearchResult({
+          payload: searchResults
+        }))
+  
+        request.unsubscribe()
+        resolve(searchResults)
+      })
     })
+
+    await new Promise((resolve, reject) => {
+      const imageRequest: Subscription = this.searchService.searchProductImages$(searchResults.map(product => product.id), 1).subscribe(images => {
+            this.store.dispatch(setProductSearchResultImages({
+              payload: images
+            }))            
+            imageRequest.unsubscribe()
+            resolve(null)
+      })
+    })
+
+    this.store.dispatch(setProductSearchState({
+      payload: 'success'
+    }))  
   }
 
 }
