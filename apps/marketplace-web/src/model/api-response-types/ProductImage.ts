@@ -1,5 +1,5 @@
-type ProductImage = {
-    url: string
-}
+// type ProductImage = {
+//     url: string
+// }
 
-export default ProductImage
+// export default ProductImage

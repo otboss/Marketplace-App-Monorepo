@@ -1,26 +1,38 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import AsyncState from "src/model/AsyncState";
 import Payload from "src/model/Payload";
-import ProductCategories from "src/model/ProductCategories";
-import * as appState from "../app-state"
+import appState from "../app-state"
 
 export const selectProductSearchQuery = createSelector(
     createFeatureSelector("productSearch"),
-    (state: typeof appState.default.productSearch) => <Payload<string>>{
+    (state: typeof appState.productSearch) => <Payload<typeof appState.productSearch.query>>{
         payload: state.query
     }
 )
 
 export const selectProductSearchCategory = createSelector(
     createFeatureSelector("productSearch"),
-    (state: typeof appState.default.productSearch) => <Payload<ProductCategories>>{
+    (state: typeof appState.productSearch) => <Payload<typeof appState.productSearch.category>>{
         payload: state.category
     }
 )
 
 export const selectProductSearchState = createSelector(
     createFeatureSelector("productSearch"),
-    (state: typeof appState.default.productSearch) => <Payload<AsyncState>>{
+    (state: typeof appState.productSearch) => <Payload<typeof appState.productSearch.state>>{
         payload: state.state
+    }
+)
+
+export const selectProductSearchResult = createSelector(
+    createFeatureSelector("productSearch"),
+    (state: typeof appState.productSearch) => <Payload<typeof appState.productSearch.result>>{
+        payload: state.result
+    }
+)
+
+export const selectProductSearchResultImages = createSelector(
+    createFeatureSelector("productSearch"),
+    (state: typeof appState.productSearch) => <Payload<typeof appState.productSearch.resultImages>>{
+        payload: state.resultImages
     }
 )

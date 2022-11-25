@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { productSearchReducer } from 'src/ngrx/product-search-store/product-search-reducer';
 import { CookieService } from 'ngx-cookie-service';
+import { ComponentsModule } from 'src/components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { CookieService } from 'ngx-cookie-service';
     AppRoutingModule, StoreModule.forRoot({
       productSearch: productSearchReducer, 
     }),
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CookieService],
   bootstrap: [AppComponent],

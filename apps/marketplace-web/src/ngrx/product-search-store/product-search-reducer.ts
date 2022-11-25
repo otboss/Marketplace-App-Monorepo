@@ -1,26 +1,35 @@
-import { setProductSearchQuery, setProductSearchCategory, setProductSearchState } from "./product-search-actions";
+import { setProductSearchQuery, setProductSearchCategory, setProductSearchState, setProductSearchResult, setProductSearchResultImages } from "./product-search-actions";
 import { createReducer, on } from "@ngrx/store";
 import appState from "../app-state"
-import ProductSearch from "src/model/ProductSearch";
 
-const defaultState: ProductSearch= appState.productSearch
+const defaultState: typeof appState.productSearch = appState.productSearch
 
 export const productSearchReducer = createReducer(
     defaultState,
 
-    on(setProductSearchQuery, (state: typeof defaultState, action) => ({
+    on(setProductSearchQuery, (state: typeof defaultState, action) => (<typeof appState.productSearch>{
         ...state,
         query: action.payload
     })),
 
-    on(setProductSearchCategory, (state: typeof defaultState, action) => ({
+    on(setProductSearchCategory, (state: typeof defaultState, action) => (<typeof appState.productSearch>{
         ...state,
         category: action.payload
     })),
 
-    on(setProductSearchState, (state: typeof defaultState, action) => ({
+    on(setProductSearchState, (state: typeof defaultState, action) => (<typeof appState.productSearch>{
         ...state,
         state: action.payload
+    })),
+
+    on(setProductSearchResult, (state: typeof defaultState, action) => (<typeof appState.productSearch>{
+        ...state,
+        result: action.payload
+    })),
+
+    on(setProductSearchResultImages, (state: typeof defaultState, action) => (<typeof appState.productSearch>{
+        ...state,
+        resultImages: action.payload
     })),
 
 )

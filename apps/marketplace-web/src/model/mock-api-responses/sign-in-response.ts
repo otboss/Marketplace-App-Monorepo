@@ -1,7 +1,5 @@
-import AuthToken from "src/model/api-response-types/AuthToken";
-
-const signInResponse: AuthToken = {
-    token: ""
+const signInResponse: {token: string} = {
+    token: "123"
 }
 
 export default signInResponse

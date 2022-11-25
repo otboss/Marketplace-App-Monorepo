@@ -1,0 +1,18 @@
+.app-input {
+    --ion-color-success: var(--ion-color-primary);
+}
+
+.app-input--error {
+    --ion-color-success: var(--ion-color-danger);
+}
+
+.app-input--error-container{
+    position: relative;
+}
+
+.app-input--error-container span {
+    position: absolute;
+    color: var(--ion-color-danger);
+    top: 0px;
+    font-size: 12px;
+}
