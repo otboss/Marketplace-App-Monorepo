@@ -80,3 +80,8 @@
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Npgsql.dll
 /home/ottor/Apps/Marketplace-App-Monorepo/apps/marketplace-api/bin/Debug/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/app/bin/Debug/net6.0/Microsoft.IdentityModel.Abstractions.dll
+/app/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/app/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
+/app/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
+/app/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll
