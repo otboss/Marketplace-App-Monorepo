@@ -8,7 +8,7 @@ This application was build using Angular and ASP.NET. The intended objective of 
 
 2. In the root of the project folder, start the project using the command:
     ```
-    docker-compose up
+    npm --prefix ./apps/marketplace-web/ i && docker-compose up
     ```
     wait for the project to download all dependencies and run
 3. Once the project has started navigate to the following URL in the desired web browser:

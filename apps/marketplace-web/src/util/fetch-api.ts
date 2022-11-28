@@ -19,7 +19,6 @@ const fetchApi = <T>(
         mockApiResponseTime: number
     }>
 ): Observable<T> => {
-    console.log(endpoint)
     
     if(options){
         options.isUsingMock = options.isUsingMock ?? environment.useMockAPI
@@ -33,7 +32,6 @@ const fetchApi = <T>(
             throw new Error('Endpoint handling was not implemented for mock');
         }
 
-        console.log(endpoint)
         const observable = new Observable((observer) => {
             switch(endpoint){
                 case "signIn":

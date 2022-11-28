@@ -9,6 +9,7 @@ FROM base as dev
 ENV NODE_ENV=development
 RUN npm cache clean --force
 RUN npm install -g --unsafe-perm=true --allow-root @ionic/cli@6.20.4
+RUN npm config set cache /app/logs --global
 # RUN npm audit fix
 USER root
 CMD ["npm", "start"]
