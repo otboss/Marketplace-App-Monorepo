@@ -96,10 +96,7 @@ export class SignInPage implements OnInit {
 
   handleSignUp(){
     // TODO:   
-  }
-
-  handleSignOut(){
-    // TODO: 
+    
   }
 
   handleForgotPassword(){

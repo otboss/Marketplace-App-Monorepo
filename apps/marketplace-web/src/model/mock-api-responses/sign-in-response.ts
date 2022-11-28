@@ -1,5 +1,5 @@
 const signInResponse: {token: string} = {
-    token: "123"
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTY3ODkwIiwiZmlyc3ROYW1lIjoiSm9obiAiLCJsYXN0TmFtZSI6IkRvZSIsInRpbWVzdGFtcCI6MTUxNjIzOTAyMn0.xcPBmWDC6CtU1K1KZPiMGyhgniHyp7d94Fc4dXACrZI"
 }
 
 export default signInResponse

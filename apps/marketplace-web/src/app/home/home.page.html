@@ -9,8 +9,8 @@
   <div class="home--header-searchbar">
     <form class="home--header-searchbar-container">
       <ion-select interface="popover" placeholder="Select Category" [value]="searchCategory" (ionChange)="updateSearchCategory($event)">
-        <div *ngFor="let category of productCategories">
-          <ion-select-option [value]="category">{{ category }}</ion-select-option>
+        <div class="home--header-searchbar-category-option" *ngFor="let category of productCategories">
+          <ion-select-option [value]="category">{{ toTitleCase(category.split("_").join(" ")) }}</ion-select-option>
         </div>
       </ion-select>
       <input (keyup)="updateSearchQuery($event)" [value]="searchQuery">
@@ -25,10 +25,9 @@
     <ion-popover class="home--header-actions-account-popover" trigger="home--header-actions-account" triggerAction="click">
       <ng-template>
         <ion-content class="ion-padding">
-          <span>You are not currently signed in</span>
-          TOKEN: {{token}}
-          <ion-button *ngIf="token == null || token.length == 0" expand="block" (click)="accountPopoverSignInButtonClicked()">Sign In</ion-button>
-          <ion-button *ngIf="token != null && token.length > 0" expand="block" (click)="accountPopoverSignInButtonClicked()">Sign Out</ion-button>
+          <span>You are currently viewing as {{getToken() == null ? "guest" : getToken()?.firstName + " " + getToken()?.lastName}}</span>
+          <ion-button *ngIf="getToken() == null" expand="block" (click)="accountPopoverSignInButtonClicked()">Sign In</ion-button>
+          <ion-button *ngIf="getToken() != null" expand="block" (click)="handleSignOut()">Sign Out</ion-button>
         </ion-content>
       </ng-template>
     </ion-popover>

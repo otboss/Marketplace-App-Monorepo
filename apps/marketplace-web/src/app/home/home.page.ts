@@ -16,6 +16,7 @@ import productSearchResponse from 'src/model/mock-api-responses/product-search-r
 import AsyncState from 'src/model/AsyncState';
 import Payload from 'src/model/Payload';
 import jwt_decode from "jwt-decode"
+import AuthToken from 'src/model/AuthToken';
 
 @Component({
   selector: 'app-home',
@@ -34,12 +35,18 @@ export class HomePage {
   searchCategory: ProductCategories = ProductCategories.ALL_CATEGORIES
   page: number = 1
   searchState: AsyncState = "success"
-  token: string = this.cookieService.get(CookieFields.authToken)
 
   subscriptions: Array<Subscription> = []
 
+   toTitleCase(str: string) {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  }
 
-  // TODO: Make product categories title case and remove underlines
   productCategories: ReadonlyArray<string> = Object.values(ProductCategories)
 
   constructor(private store: Store<typeof appState>, private router: Router, public popoverCtrl: PopoverController, private searchService: SearchService, private cookieService: CookieService) { 
@@ -54,6 +61,14 @@ export class HomePage {
 
   ngOnDestroy(){
     this.subscriptions.forEach(subscription => subscription.unsubscribe())
+  }
+
+
+  getToken(): AuthToken | null {
+    if(this.cookieService.get(CookieFields.authToken) == null || this.cookieService.get(CookieFields.authToken) == ""){
+      return null
+    }
+    return jwt_decode(this.cookieService.get(CookieFields.authToken)) as AuthToken
   }
 
   accountPopoverSignInButtonClicked(){
@@ -117,6 +132,12 @@ export class HomePage {
     this.store.dispatch(setProductSearchState({
       payload: 'success'
     }))  
+  }
+
+  handleSignOut(){
+    this.cookieService.delete(CookieFields.authToken)
+    this.router.navigateByUrl(RouteMapper.signIn)
+    this.popoverCtrl.dismiss()
   }
 
 }

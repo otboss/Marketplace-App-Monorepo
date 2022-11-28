@@ -45,7 +45,7 @@ const productSearchResponse: Array<{
         minCost: 122,
         maxCost: 122,
         rating: 0.76,
-        title: "Jeans",
+        title: "Backpack",
         category: ProductCategories.APPAREL
     },
     {
@@ -53,7 +53,7 @@ const productSearchResponse: Array<{
         minCost: 122,
         maxCost: 122,
         rating: 0.76,
-        title: "Jeans",
+        title: "watch",
         category: ProductCategories.APPAREL
     },
     {
@@ -61,7 +61,7 @@ const productSearchResponse: Array<{
         minCost: 122,
         maxCost: 122,
         rating: 0.76,
-        title: "Jeans",
+        title: "cap",
         category: ProductCategories.APPAREL
     },
 ]

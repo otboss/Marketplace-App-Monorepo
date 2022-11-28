@@ -1,15 +1,17 @@
+import AsyncState from "src/model/AsyncState";
+import productSearchImagesResponse from "src/model/mock-api-responses/product-search-images-response";
+import productSearchResponse from "src/model/mock-api-responses/product-search-response";
 import ProductCategories from "src/model/ProductCategories";
-import ProductSearch from "src/model/ProductSearch";
 
-const appState = {
-    productSearch: <ProductSearch>{
+const appState = Object.freeze({
+    productSearch: {
         query: "",
         category: ProductCategories.ALL_CATEGORIES,
         page: 1,
-        state: "success",
-        result: [],
-        resultImages: {}
+        state: <AsyncState>"success",
+        result: <typeof productSearchResponse>[],
+        resultImages: <typeof productSearchImagesResponse>{}
     }
-}
+})
 
 export default appState

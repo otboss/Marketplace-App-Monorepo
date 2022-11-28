@@ -1,2 +1,4 @@
+.vs
 bin/Debug/net6.0/*.dll
+bin/Debug/net6.0/*.pdb
 bin/Debug/net6.0/*.assets.cache
